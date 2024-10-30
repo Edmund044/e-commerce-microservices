@@ -1,24 +1,15 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/e-commerce-microservice/src",
+  "sourceRoot": "apps/e-commerce-api-gateway/src",
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true,
-    "tsConfigPath": "apps/e-commerce-microservice/tsconfig.app.json"
+    "tsConfigPath": "apps/e-commerce-api-gateway/tsconfig.app.json"
   },
   "monorepo": true,
-  "root": "apps/e-commerce-microservice",
+  "root": "apps/e-commerce-api-gateway",
   "projects": {
-    "e-commerce-microservice": {
-      "type": "application",
-      "root": "apps/e-commerce-microservice",
-      "entryFile": "main",
-      "sourceRoot": "apps/e-commerce-microservice/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/e-commerce-microservice/tsconfig.app.json"
-      }
-    },
     "e-commerce-api-gateway": {
       "type": "application",
       "root": "apps/e-commerce-api-gateway",
