@@ -3,6 +3,8 @@ import { ECommerceApiGatewayController } from './e-commerce-api-gateway.controll
 import { ECommerceApiGatewayService } from './e-commerce-api-gateway.service';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
+import { OrdersModule } from './orders/orders.module';
+import { InventoryModule } from './inventory/inventory.module';
 
 @Module({
   imports: [
@@ -10,6 +12,8 @@ import { APP_GUARD } from '@nestjs/core';
       ttl: 60, // Rate limit window in seconds
       limit: 100, // Max requests per window
     }),
+    OrdersModule,
+    InventoryModule,
   ],
   controllers: [ECommerceApiGatewayController],
   providers: [    
