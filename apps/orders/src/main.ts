@@ -1,11 +1,11 @@
 import { NestFactory } from '@nestjs/core';
-import { InventoryModule } from './inventory.module';
 import { MicroserviceOptions,Transport } from '@nestjs/microservices';
+import { OrdersModule } from './orders.module';
 import '../../library/tracing/opentelemetry'
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    InventoryModule,
+    OrdersModule,
     {
       transport: Transport.TCP,
       options: {
