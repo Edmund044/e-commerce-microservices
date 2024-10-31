@@ -18,9 +18,11 @@ export class OrdersController {
   }
 
   @MessagePattern('orders.findAllOrders')
-  findAll(@Payload() page: number = 1,@Payload() pageSize: number = 10) {
-    this.logger.log(`Listing orders - Page: ${page}, Page Size: ${pageSize}`);
-    return this.ordersService.findAll(Number(page), Number(pageSize));
+  // findAll(@Payload() page: number = 1,@Payload() pageSize: number = 10) {
+  findAll(){
+    // this.logger.log(`Listing orders - Page: , Page Size: ${pageSize}`);
+    // return this.ordersService.findAll(Number(page), Number(pageSize));
+    return 'return all api'
   }
 
   @MessagePattern('orders.findOneOrder')

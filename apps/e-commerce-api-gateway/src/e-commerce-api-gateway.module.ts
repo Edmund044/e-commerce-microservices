@@ -8,19 +8,19 @@ import { InventoryModule } from './inventory/inventory.module';
 
 @Module({
   imports: [
-    ThrottlerModule.forRoot({
-      ttl: 60, // Rate limit window in seconds
-      limit: 100, // Max requests per window
-    }),
+    // ThrottlerModule.forRoot({
+    //   ttl: 60,
+    //   limit: 10,
+    // }),
     OrdersModule,
     InventoryModule,
   ],
   controllers: [ECommerceApiGatewayController],
   providers: [    
-    {
-    provide: APP_GUARD,
-    useClass: ThrottlerGuard, // Applies rate limiting globally
-  },
+  //   {
+  //   provide: APP_GUARD,
+  //   useClass: ThrottlerGuard, // Applies rate limiting globally
+  // },
   ECommerceApiGatewayService],
 })
 export class ECommerceApiGatewayModule {}

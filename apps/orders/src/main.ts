@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions,Transport } from '@nestjs/microservices';
-import { OrdersModule } from './orders.module';
+import { OrdersModule } from './orders/orders.module';
 import '../../library/tracing/opentelemetry'
 
 async function bootstrap() {

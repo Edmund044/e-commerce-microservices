@@ -1,15 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { ClientProxy } from '@nestjs/microservices'
 
 @Injectable()
 export class OrdersService {
+
+  constructor(@Inject('ORDERS_CLIENT') private ordersClient: ClientProxy){}
+
   create(createOrderDto: CreateOrderDto) {
     return 'This action adds a new order';
   }
 
   findAll() {
-    return `This action returns all orders`;
+    return this.ordersClient.send('orders.findAllOrders',{})
   }
 
   findOne(id: number) {

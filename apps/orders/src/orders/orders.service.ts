@@ -40,6 +40,15 @@ export class OrdersService {
   return order;
 
   }
+  async findAll(id: number) {
+    this.logger.log(`Fetching order with ID: ${id}`);
+    const order = await this.orderRepository.findOne(id);
+    if (!order) {
+      this.logger.warn(`Order with ID: ${id} not found`);
+    }
+    return order;
+  
+    }
 
   async updateStatus(id: number, status: string) {
     this.logger.log(`Updating status for order ID: ${id} to ${status}`);

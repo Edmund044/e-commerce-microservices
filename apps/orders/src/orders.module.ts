@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { OrdersController } from './orders.controller';
-import { OrdersService } from './orders.service';
+// import { OrdersController } from './orders.controller';
+// import { OrdersService } from './orders.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrdersModule } from './orders/orders.module';
 
@@ -16,7 +16,7 @@ import { OrdersModule } from './orders/orders.module';
     synchronize: true, // Disable in production
   }),
     OrdersModule],
-  controllers: [OrdersController],
-  providers: [OrdersService],
+  // controllers: [OrdersController],
+  // providers: [OrdersService],
 })
-export class OrdersModule {}
+export class OrdersAModule {}
