@@ -1,26 +1,23 @@
-import { Injectable } from '@nestjs/common';
+import { Inject,Injectable } from '@nestjs/common';
 import { CreateInventoryDto } from './dto/create-inventory.dto';
 import { UpdateInventoryDto } from './dto/update-inventory.dto';
+import { ClientProxy } from '@nestjs/microservices'
 
 @Injectable()
 export class InventoryService {
-  create(createInventoryDto: CreateInventoryDto) {
-    return 'This action adds a new inventory';
-  }
 
-  findAll() {
-    return `This action returns all inventory`;
+  constructor(@Inject('INVENTORY_CLIENT') private inventoryClient: ClientProxy){}
+
+  bulkCheck() {
+    return this.inventoryClient.send('inventory.bulkCheckInventory',{})
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} inventory`;
+    return this.inventoryClient.send('inventory.findOneInventory',{})
   }
 
   update(id: number, updateInventoryDto: UpdateInventoryDto) {
-    return `This action updates a #${id} inventory`;
+    return this.inventoryClient.send('inventory.updateInventory',{})
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} inventory`;
-  }
 }

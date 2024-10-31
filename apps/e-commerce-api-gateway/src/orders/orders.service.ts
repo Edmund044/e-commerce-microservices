@@ -9,7 +9,7 @@ export class OrdersService {
   constructor(@Inject('ORDERS_CLIENT') private ordersClient: ClientProxy){}
 
   create(createOrderDto: CreateOrderDto) {
-    return 'This action adds a new order';
+    return this.ordersClient.send('orders.createOrder',{})
   }
 
   findAll() {
@@ -17,14 +17,11 @@ export class OrdersService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} order`;
+    return this.ordersClient.send('orders.findOneOrder',{})
   }
 
   update(id: number, updateOrderDto: UpdateOrderDto) {
-    return `This action updates a #${id} order`;
+    return this.ordersClient.send('orders.updateOrder',{})
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} order`;
-  }
 }

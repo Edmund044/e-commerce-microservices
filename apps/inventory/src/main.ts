@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { InventoryModule } from './inventory.module';
+import { InventoryModule } from './inventory/inventory.module';
 import { MicroserviceOptions,Transport } from '@nestjs/microservices';
 import '../../library/tracing/opentelemetry'
 
@@ -9,7 +9,7 @@ async function bootstrap() {
     {
       transport: Transport.TCP,
       options: {
-        port: 3001,
+        port: 3002,
       }
     }
 

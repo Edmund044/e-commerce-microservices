@@ -15,13 +15,13 @@ export class InventoryController {
     return this.inventoryService.findOne(id);
   }
 
-  @MessagePattern('inventory.updateInventory')
+  @MessagePattern('inventory.bulkCheckInventory')
   bulkCheck(@Payload() products: { productId: number; quantity: number }[]) {
     this.logger.log(`Received bulk availability check for ${products.length} products`);
     return this.inventoryService.bulkCheck(products)
   }
 
-  @MessagePattern('inventory.removeInventory')
+  @MessagePattern('inventory.updateInventory')
    update(@Payload('productId') productId: number, @Payload('quantity') quantity: number) {
     this.logger.log(`Received request to update inventory for product ID: ${productId}`);
     return this.inventoryService.updateInventory(productId, quantity);

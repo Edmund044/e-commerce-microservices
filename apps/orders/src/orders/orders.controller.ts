@@ -20,9 +20,9 @@ export class OrdersController {
   @MessagePattern('orders.findAllOrders')
   // findAll(@Payload() page: number = 1,@Payload() pageSize: number = 10) {
   findAll(){
-    // this.logger.log(`Listing orders - Page: , Page Size: ${pageSize}`);
+    this.logger.log('Listing orders - Page: , Page Size:');
     // return this.ordersService.findAll(Number(page), Number(pageSize));
-    return 'return all api'
+    return 'return all api2'
   }
 
   @MessagePattern('orders.findOneOrder')
