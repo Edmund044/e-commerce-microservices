@@ -14,17 +14,14 @@ export class OrdersController {
   @MessagePattern('orders.createOrder')
   async create(@Payload() orderData: Partial<Order>) {
     this.logger.log('Received request to create a new order');
-    return this.ordersService.create(orderData);
+    return await this.ordersService.create(orderData);
   }
 
   @MessagePattern('orders.findAllOrders')
-  // findAll(@Payload() page: number = 1,@Payload() pageSize: number = 10) {
-  findAll(){
-    this.logger.log('Listing orders - Page: , Page Size:');
-    // return this.ordersService.findAll(Number(page), Number(pageSize));
-    return 'return all api2'
+  findAll(@Payload() payload: any) {
+    this.logger.log(`Listing orders - Page: ${payload.page}, Page Size:${payload.pageSize}`);
+    return this.ordersService.findAll(Number(payload.page), Number(payload.pageSize));
   }
-
   @MessagePattern('orders.findOneOrder')
   findOne(@Payload() id: number) {
     this.logger.log(`Received request to fetch order with ID: ${id}`);
@@ -32,9 +29,9 @@ export class OrdersController {
   }
 
   @MessagePattern('orders.updateOrder')
-  update(@Payload() id: number,@Payload() status: string) {
-    this.logger.log(`Received request to fetch order with ID: ${id}`);
-    return this.ordersService.updateStatus(id, status);
+  update(@Payload() orderData: Partial<Order>) {
+    this.logger.log(`Received request to update order with ID: ${orderData} and status: ${orderData.status} `);
+    return this.ordersService.updateStatus(orderData);
   }
 
 }

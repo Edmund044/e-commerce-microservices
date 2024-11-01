@@ -6,19 +6,19 @@ export class Order {
   id: number;
 
   @Column()
-  customerName: string;
+  customer_name: string;
 
   @Column()
-  customerEmail: string;
+  customer_email: string;
 
   @Column()
-  shippingAddress: string;
+  shipping_address: string;
 
-  @Column('jsonb')
-  items: { productId: number; quantity: number; price: number }[];
+  // @Column('jsonb')
+  // items: { productId: number; quantity: number; price: number }[];
 
   @Column('decimal')
-  totalAmount: number;
+  total_amount: number;
 
   @Column({ default: 'PENDING' })
   status: 'PENDING' | 'CONFIRMED' | 'SHIPPED' | 'DELIVERED';

@@ -28,6 +28,7 @@
     "@nestjs/terminus": "^10.2.3",
     "@nestjs/throttler": "^6.2.1",
     "@nestjs/typeorm": "^10.0.2",
+    "@nestjs/websockets": "^10.4.6",
     "@opentelemetry/api": "^1.9.0",
     "@opentelemetry/auto-instrumentations-node": "^0.52.0",
     "@opentelemetry/exporter-jaeger": "^1.27.0",
@@ -36,10 +37,12 @@
     "cache-manager": "^6.1.2",
     "cache-manager-redis-store": "^3.0.1",
     "nestjs-rate-limiter": "^3.1.0",
+    "opossum": "^8.3.0",
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
-    "typeorm": "^0.3.20"
+    "typeorm": "^0.3.20",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",

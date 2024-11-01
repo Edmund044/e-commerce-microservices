@@ -5,35 +5,36 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Inventory } from './entities/inventory.entity';
 import { trace } from '@opentelemetry/api';
+import { InventoryRespository } from './inventory.repository';
 
 @Injectable()
 export class InventoryService {
   private readonly logger = new Logger(InventoryService.name);
  
-  // constructor(
-  //   @InjectRepository(Inventory)
-  //   private inventoryRepository: Repository<Inventory>,
-  // ) {}
+  constructor(
+    @InjectRepository(InventoryRespository)
+    private inventoryRepository: InventoryRespository,
+  ) {}
 
   async findOne(productId: number) {
     this.logger.log(`Checking availability for product ID: ${productId}`);
-    return `find one ${productId}`
-    // const tracer = trace.getTracer('inventory-service');
-    // return await tracer.startActiveSpan('InventoryService.findOne', async (span) => {
-    //   try {
-    //     this.logger.log(`Checking availability for product ID: ${productId}`);
-    //     const inventory = await this.inventoryRepository.findOne({ where: { productId } });
-    //     if (!inventory) {
-    //       this.logger.warn(`Product with ID: ${productId} not found in inventory`);
-    //     }
-    //     return inventory;
-    //   } catch (error) {
-    //     span.recordException(error);
-    //     throw error;
-    //   } finally {
-    //     span.end();
-    //   }
-    // });
+    // return `find one ${productId}`
+    const tracer = trace.getTracer('inventory-service');
+    return await tracer.startActiveSpan('InventoryService.findOne', async (span) => {
+      try {
+        this.logger.log(`Checking availability for product ID: ${productId}`);
+        const inventory = await this.inventoryRepository.findOne({ where: { productId } });
+        if (!inventory) {
+          this.logger.warn(`Product with ID: ${productId} not found in inventory`);
+        }
+        return inventory;
+      } catch (error) {
+        span.recordException(error);
+        throw error;
+      } finally {
+        span.end();
+      }
+    });
   }
 
   async bulkCheck(products: { productId: number; quantity: number }[]) {
