@@ -3,7 +3,7 @@ import { InventoryService } from './inventory.service';
 import { InventoryController } from './inventory.controller';
 import { RateLimiterModule } from 'nestjs-rate-limiter';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { InventoryRespository } from './inventory.repository';
+import { Inventory } from './entities/inventory.entity';
 
 @Module({
   imports: [   
@@ -19,8 +19,8 @@ import { InventoryRespository } from './inventory.repository';
       synchronize: true,
       entities: [__dirname + '/../**/*.entity.{js,ts}']
     }),
-    TypeOrmModule.forFeature([InventoryRespository]),
-      // CacheModule.register({
+    TypeOrmModule.forFeature([Inventory]),
+      // CacheModule.register({S
       //   ttl: 5000, // Cache expiration time in milliseconds
       //   max: 10, // Maximum number of items in cache
       // }),

@@ -7,13 +7,18 @@ import { UpdateInventoryDto } from './dto/update-inventory.dto';
 export class InventoryController {
   constructor(private readonly inventoryService: InventoryService) {}
 
-  @Get()
-  bulkCheck() {
-    return this.inventoryService.bulkCheck();
+  @Post()
+  create(@Body() createInventoryDto: CreateInventoryDto) {
+    return this.inventoryService.create(createInventoryDto);
+  }
+
+  @Get('/check')
+  bulkCheck(@Body() products: { product_id: number; quantity: number }[]) {
+    return this.inventoryService.bulkCheck(products);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number) {
     return this.inventoryService.findOne(+id);
   }
 
